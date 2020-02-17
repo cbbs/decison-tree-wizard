@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import cpaQuestions from './api/cpaQuestions';
+// import cpaQuestions from './api/cpaQuestions';
 import Quiz from './components/Quiz';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.questions = window.decisionTreeWizard.data;
 
     this.state = {
       counter: 0,
@@ -19,7 +21,7 @@ class App extends Component {
   }
 
   findQuestion(questionId) {
-    return cpaQuestions.find(obj => {
+    return this.questions.find(obj => {
       return obj.id === questionId
     })
   }
@@ -95,7 +97,7 @@ class App extends Component {
           answerOptions={this.state.answerOptions}
           questionId={this.state.questionId}
           question={this.state.question}
-          questionTotal={cpaQuestions.length}
+          questionTotal={this.questions.length}
           onAnswerSelected={this.handleAnswerSelected}
         />
         <div className="cpa_bottom">
